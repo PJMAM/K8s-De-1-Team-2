@@ -1,21 +1,19 @@
-# K8s-De-1-Team-2
-# Setup kubernetes with MiniKube on Ubuntu AWS Ec2 Instance 
+# Cài đặt kubernetes với MiniKube trên Ubuntu AWS Ec2 Instance 
 
 ### MiniKube 
 
-MiniKube used to Run the Kubernetes Locally. 
+- MiniKube được sử dụng để chạy Kubernetes cục bộ.
 
-Minikube is a single-node Kubernetes cluster that you can use locally in your own development machine to test your Kubernetes deployment scripts,
-explore and study Kubernetes etc.
+- Minikube là một cụm Kubernetes một nút mà bạn có thể sử dụng cục bộ trong máy của riêng mình để kiểm tra các tập lệnh triển khai Kubernetes của bạn, khám phá và nghiên cứu Kubernetes, v.v.
 
-MiniKube is used for Development Purposes.
+- MiniKube được sử dụng cho Mục đích Phát triển.
 
-Minikube can’t be used in Production, as It’s One Node Machine.
+- Minikube không thể được sử dụng trong Sản xuất.
 
 
-### Steps to Setup kubernetes with MiniKube
+### Các bước cài đặt
 
-#### Step 1 Install Docker 
+#### Bước 1 Cài đặt Docker 
 
 ```sh
 
@@ -41,7 +39,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 ````
 
-#### Step 2 Install KubeCtl 
+#### Bước 2 Cài đặt KubeCtl 
 
 ```sh
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
@@ -50,11 +48,11 @@ chmod +x ./kubectl
 
 sudo mv ./kubectl /usr/local/bin/kubectl
 
- kubectl version
+kubectl version
 
 ```
 
-#### Step 3 Install MiniKube
+#### Bước 3 Cài đặt MiniKube
 ```sh
 
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
@@ -66,7 +64,7 @@ sudo mv ./minikube /usr/local/bin/minikube
 sudo apt-get install conntrack  // this is dependecy for minicube 
 ```
 
-#### Step 4 Execute MiniKube & Create Cluster
+#### Bước 4 Chạy MiniKube
 
 ```sh
 
@@ -74,50 +72,27 @@ minikube start --vm-driver=none  //
 
 ```
 
-#### Step 5 Interact Cluster Using KubeCtl
+#### Bước 5 Kiểm tra 
 
 ```sh
 
-Let’s create a Kubernetes Deployment using an existing image named
-nginx, which is a simple HTTP server and expose it on port 80
-using --port.
-
-sudo kubectl create deployment nginx --image=nginx
-
-Create the Service 
-sudo kubectl create service nodeport nginx --tcp=80:80 
-
-kubectl get svc
-
-kubectl patch svc nginx -p '{"spec":{"externalIPs":["ipaddress"]}}'
+kubectl get node 
 
 ```
 
 
+### Triển khai mongodb 
 
-#### Step 6 Inspect the pods and the deployments
-
-```sh
-
-kubectl get pods -A
-kubectl get deployment
-
+#### Khi đã tạo được cụm kubernetes thì chạy các lệnh sau để triển khai mongodb 
 ```
-
-
-#### Step 7 Delete the Service and Deployment
-
-```sh
-
-kubectl delete services nginx
-kubectl delete deployment nginx
-
+kubectl apply -f mongo-secret.yaml
+kubectl apply -f mongo.yaml
+kubectl apply -f mongo-configmap.yaml 
+kubectl apply -f mongo-express.yaml
 ```
-
-#### Step 8 Stop MiniKube
-
-```sh
-Stop the local Minikube cluster:
-minikube stop
-
+#### Kiểm tra các thành phần đang chạy 
 ```
+kubectl get all
+```
+#### Để truy cập được lên web dùng địa chỉ ip máy của máy mình  với port 30000
+	VD : http://34.193.147.254:30000/
