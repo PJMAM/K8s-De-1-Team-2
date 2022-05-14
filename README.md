@@ -1,4 +1,4 @@
-# Topic : Tìm hiểu K8s Và đề mô áp dụng
+# Topic : Tìm hiểu K8s Và demo áp dụng
 
 # Thành viên
 - Nguyễn Duy Phước - 19133003
