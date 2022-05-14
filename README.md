@@ -1,3 +1,14 @@
+# Topic : Tìm hiểu K8s Và đề mô áp dụng
+
+# Thành viên
+- Nguyễn Duy Phước - 19133003
+- Lưu Gia Bảo      - 19133008
+- Nguyễn Quốc Việt - 19133068
+
+# Thông Tin về k8s
+- [Kubernate](https://kubernetes.io/vi/docs/concepts/overview/what-is-kubernetes/)
+- [MiniKube](https://viblo.asia/p/tim-hieu-co-ban-ve-kubernetes-k8s-part-2-minikube-XL6lA2Mp5ek)
+
 # Cài đặt kubernetes với MiniKube trên Ubuntu AWS Ec2 Instance 
 
 ### MiniKube 
