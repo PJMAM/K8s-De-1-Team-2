@@ -107,3 +107,42 @@ kubectl get all
 ```
 #### Để truy cập được lên web dùng địa chỉ ip máy của máy mình  với port 30000
 	VD : http://34.193.147.254:30000/
+#### Để xoá mongodb
+	
+```
+cd kubernetes/mongo/
+kubectl delete -k .
+```
+## Triển khai nginx + NFS
+
+#### Đầu tiên phải tạo một máy ubuntu khác để cài NFS server để lưu file  .Cách cài đăt có thể làm theo link sau 
+https://vinasupport.com/huong-dan-cai-dat-nfs-server-tren-ubuntu-20-04/
+
+Sau khi cài xong nfs server thì vào vào máy kubernetes  (minikube) trong file deployment.yaml chỉnh lại ip nfs server theo máy đã cài NFS (có 2 chỗ cần sửa ) và đường dẫn tương ứng với chỗ mount file .
+	
+```
+sudo su
+vim kubernetes/nginx/nfs/deployment.yaml
+``` 
+#### Để triển khai nginx gõ lệnh sau
+	
+```
+sudo su
+cd kubernetes/nginx/
+kubectl apply -k .
+``` 
+#### Truy cập http://[ip]:31315 để truy cập nginx
+Nếu gặp lỗi thì vào máy NFS server tạo file index.html trong /nfs/kubedata (tuỳ máy cấu hình )
+	
+```
+sudo su
+cd /nfs/kubedata/[thư mục kubernetes tạo]
+vim index.html
+``` 
+#### Để xoá nginx 
+
+```
+cd kubernetes/nginx/
+kubectl delete -k .
+kubectl delete pv --all
+``` 

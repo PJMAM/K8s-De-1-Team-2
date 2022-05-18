@@ -1,0 +1,9 @@
+
+resources:
+  - nfs/rbac.yaml
+  - nfs/class.yaml
+  - nfs/deployment.yaml
+  - pv/pvc.yaml
+  - deployment/nginx.yaml
+  - service/nginx-service.yaml
+#kustom  
