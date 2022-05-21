@@ -96,17 +96,20 @@ kubectl get node
 
 #### Khi đã tạo được cụm kubernetes thì chạy các lệnh sau để triển khai mongodb 
 ```
-kubectl apply -f mongo-secret.yaml
-kubectl apply -f mongo.yaml
-kubectl apply -f mongo-configmap.yaml 
-kubectl apply -f mongo-express.yaml
+sudo su
+cd kubernetes/mongo/
+kubectl create -k .
 ```
 #### Kiểm tra các thành phần đang chạy 
 ```
 kubectl get all
 ```
+
 #### Để truy cập được lên web dùng địa chỉ ip máy của máy mình  với port 30000
-	VD : http://34.193.147.254:30000/
+	
+```
+VD : http://34.193.147.254:30000/
+```
 #### Để xoá mongodb
 	
 ```
