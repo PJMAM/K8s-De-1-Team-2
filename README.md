@@ -27,7 +27,7 @@
 #### Bước 1 Cài đặt Docker 
 
 ```sh
-
+sudo su 
 sudo apt-get update
 
 sudo apt-get install \
@@ -92,12 +92,12 @@ kubectl get node
 ```
 
 
-### Triển khai mongodb 
+## Triển khai mongodb 
 
 #### Khi đã tạo được cụm kubernetes thì chạy các lệnh sau để triển khai mongodb 
 ```
 sudo su
-cd kubernetes/mongo/
+cd mongo/
 kubectl create -k .
 ```
 #### Kiểm tra các thành phần đang chạy 
@@ -113,10 +113,10 @@ VD : http://34.193.147.254:30000/
 #### Để xoá mongodb
 	
 ```
-cd kubernetes/mongo/
+cd mongo/
 kubectl delete -k .
 ```
-## Triển khai nginx + NFS
+## Triển khai nginx + NFS (tuỳ chọn có thể làm để tìm hiểu thêm)
 
 #### Đầu tiên phải tạo một máy ubuntu khác để cài NFS server để lưu file  .Cách cài đăt có thể làm theo link sau 
 https://vinasupport.com/huong-dan-cai-dat-nfs-server-tren-ubuntu-20-04/
@@ -131,7 +131,7 @@ vim kubernetes/nginx/nfs/deployment.yaml
 	
 ```
 sudo su
-cd kubernetes/nginx/
+cd nginx/
 kubectl apply -k .
 ``` 
 #### Truy cập http://[ip]:31315 để truy cập nginx
@@ -145,7 +145,7 @@ vim index.html
 #### Để xoá nginx 
 
 ```
-cd kubernetes/nginx/
+cd nginx/
 kubectl delete -k .
 kubectl delete pv --all
 ``` 
